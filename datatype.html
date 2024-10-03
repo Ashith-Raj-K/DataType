@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type of varribale </title>
+</head>
+<body>
+    <input type="text" id="varriable" placeholder="enter any data" >
+    <button onclick=typeOfData()>get type</button>
+    <h3 id="result"></h3>
+    <script>
+       function typeOfData(){
+            const givenData = document.getElementById('varriable').value
+            let res = detectType(givenData)   
+            document.getElementById('result').innerHTML = res   
+        }
+        // const res = typeof givenData 
+        function detectType(givenValue){
+            if (givenValue === ''){
+                return "undefined"
+            }
+            if(!isNaN(givenValue)){
+                return givenValue.includes('.') ? 'float' : 'integer';
+            }
+            if(givenValue.toLowerCase() === 'true' || givenValue.toLowerCase() === 'false'){
+                return 'boolean'
+            }
+            if (/^\d+n$/.test(givenValue)) {
+            return 'bigint'
+            }
+            if (/^Symbol\(\)$/.test(givenValue)) {
+            return 'Symbol';
+            }
+            return 'string'
+            }        
+    </script>
+</body>
+</html>
